@@ -88,7 +88,7 @@ public class CarController {
     }
 
     /**
-     * 通过id增加
+     * 购买
      *
      * @param car
      * @return
