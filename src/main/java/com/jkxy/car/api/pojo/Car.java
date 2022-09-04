@@ -48,6 +48,18 @@ public class Car {
         this.carSeries = carSeries;
     }
 
+    private Long quantity;
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+
+
     @Override
     public String toString() {
         return "Car{" +
@@ -56,6 +68,7 @@ public class Car {
                 ", carType='" + carType + '\'' +
                 ", price='" + price + '\'' +
                 ", carSeries='" + carSeries + '\'' +
+                ", quantity=" + quantity +
                 '}';
     }
 }

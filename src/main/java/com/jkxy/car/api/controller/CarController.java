@@ -1,5 +1,6 @@
 package com.jkxy.car.api.controller;
 
+import com.jkxy.car.api.config.BuyException;
 import com.jkxy.car.api.pojo.Car;
 import com.jkxy.car.api.service.CarService;
 import com.jkxy.car.api.utils.JSONResult;
@@ -84,5 +85,36 @@ public class CarController {
     public JSONResult insertCar(Car car) {
         carService.insertCar(car);
         return JSONResult.ok();
+    }
+
+    /**
+     * 通过id增加
+     *
+     * @param car
+     * @return
+     */
+    @PostMapping("buyCar")
+    public JSONResult buyCar(Car car) {
+        try {
+            String result = carService.buyCar(car);
+            return JSONResult.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (e instanceof BuyException) {
+                return JSONResult.ok(e.getMessage());
+            } else {
+                return JSONResult.ok("购买失败");
+            }
+        }
+    }
+
+    /*分页查询*/
+    @GetMapping("/page")
+    public  JSONResult findPage(@RequestParam Integer pageNo, @RequestParam Integer pageSize,
+                                @RequestParam String carSeries){
+        pageNo = (pageNo -1) * pageSize;
+        carSeries = "%" + carSeries + "%";
+        List<Car> cars = carService.findPage(pageNo,pageSize,carSeries);
+        return  JSONResult.ok(cars);
     }
 }

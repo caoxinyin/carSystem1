@@ -18,4 +18,8 @@ public interface CarService {
     void updateById(Car car);
 
     void insertCar(Car car);
+
+    String buyCar(Car car);
+
+    List<Car> findPage(Integer pageNo, Integer pageSize, String carSeries);
 }
